@@ -3,15 +3,15 @@ package rest_err
 import "net/http"
 
 type RestErr struct {
-	Message string   `json:"message"`
-	Err     string   `json:"error"`
-	Code    int      `json:"code"`
+	Message string   `json:"message" example:"error trying to process request"`
+	Err     string   `json:"error" example:"internal_server_error"`
+	Code    int      `json:"code" example:"500"`
 	Causes  []Causes `json:"causes"`
 }
 
 type Causes struct {
-	Field   string `json:"field"`
-	Message string `json:"messages"`
+	Field   string `json:"field" example:"name"`
+	Message string `json:"message" example:"name is required"`
 }
 
 func (error *RestErr) Error() string {
@@ -63,7 +63,15 @@ func NewNotFoundError(message string) *RestErr {
 func NewForbiddenError(message string) *RestErr {
 	return &RestErr{
 		Message: message,
-		Err:     "Not Forbidden Error",
+		Err:     "Forbidden Error",
 		Code:    http.StatusForbidden,
+	}
+}
+
+func NewUnauthorizedRequestError(message string) *RestErr {
+	return &RestErr{
+		Message: message,
+		Err:     "Unauthorized Error",
+		Code:    http.StatusUnauthorized,
 	}
 }
