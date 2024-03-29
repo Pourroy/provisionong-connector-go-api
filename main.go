@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log"
 	"github.com/Pourroy/provisionong-connector-go-api/scr/controller/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"log"
 )
 
 func main() {
@@ -18,5 +18,4 @@ func main() {
 	if err := router.Run(":8080"); err != nil {
 		log.Fatal(err)
 	}
-
 }
