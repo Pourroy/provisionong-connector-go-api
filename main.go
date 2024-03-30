@@ -21,6 +21,6 @@ func main() {
 	router.Use(requestid.New())
 	routes.InitRoutes(&router.RouterGroup)
 	if err := router.Run(":8080"); err != nil {
-		log.Fatal(err)
+		logger.Fatal("Error to initialize router", err)
 	}
 }
