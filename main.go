@@ -1,8 +1,6 @@
 package main
 
 import (
-	"log"
-
 	"github.com/Pourroy/provisionong-connector-go-api/scr/configuration/logger"
 	"github.com/Pourroy/provisionong-connector-go-api/scr/controller/routes"
 	"github.com/gin-contrib/requestid"
@@ -11,12 +9,11 @@ import (
 )
 
 func main() {
-	logger.Info("Starting Application...")
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .enf file")
+		logger.Fatal("Error loading .enf file", err)
 	}
-
+	gin.SetMode(gin.DebugMode)
 	router := gin.Default()
 	router.Use(requestid.New())
 	routes.InitRoutes(&router.RouterGroup)

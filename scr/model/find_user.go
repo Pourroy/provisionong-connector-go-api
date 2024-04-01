@@ -1,15 +1,12 @@
 package model
 
 import (
-	"fmt"
 	"github.com/Pourroy/provisionong-connector-go-api/scr/configuration/logger"
 	"github.com/Pourroy/provisionong-connector-go-api/scr/configuration/rest_err"
 )
 
-func (ud *UserDomain) CreateUser() *rest_err.RestErr {
-	logger.Info("Init CreateUser Model")
-	ud.EncryptPassword()
+func (ud *UserDomain) FindUser(string) (*UserDomain, *rest_err.RestErr) {
+	logger.Info("Init FindUser Model")
 
-	fmt.Println(ud)
-	return nil
+	return nil, nil
 }
